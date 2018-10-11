@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
     if reservation.save
       render json: reservation, status: :ok
     else
-      render json: {reservation.errors.messages}, status: :unprocessable_entity
+      render json: reservation.errors.messages, status: :unprocessable_entity
     end 
   end
 

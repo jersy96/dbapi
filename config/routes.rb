@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :api_keys, only: [:create]
   resources :hotels, only: [:index, :create, :update, :destroy]
   resources :reservations, only: [:create]
+
+  namespace :hotels do
+    get 'availability_in_date_range', to: 'availability#index'
+  end
 end

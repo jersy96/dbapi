@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update]
   resources :api_keys, only: [:create]
   resources :hotels, only: [:create, :update, :destroy]
+  resources :reservations, only: [:create]
 end

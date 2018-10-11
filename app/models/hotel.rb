@@ -4,6 +4,7 @@ class Hotel < ApplicationRecord
 
   # Validations
   validates :name, :address, :hotel_type, :size, presence: true
+  validates :email, format: {with: /\A(^\S+)[@](\w+)(\.[a-zA-Z0-9]+)+\z/, :message => 'invalid format'}, allow_blank: true
 
   # Methods
   def available_room(start_date, final_date)

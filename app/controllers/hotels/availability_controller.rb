@@ -3,11 +3,11 @@ class Hotels::AvailabilityController < ApplicationController
     available_hotels = []
     start_date = params[:start_date]
     final_date = params[:final_date]
-    Hotel.all.each do |hotel|
+    Hotel.where(state: params.require('state')).each do |hotel|
       if hotel.available_room(start_date, final_date)
         available_hotels << hotel
       end
     end
-    render json: available_hotels, status: :ok
+    render json: {hotels: ActiveModel::ArraySerializer.new(available_hotels, each_serializer: HotelSerializer)}, status: :ok
   end
 end

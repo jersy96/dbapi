@@ -10,6 +10,7 @@ class Reservation < ApplicationRecord
   # Validations
   validates :start_date, :final_date, presence: true
   validate :start_date_before_final_date
+  validate :available_room_in_hotel
 
   # Methods
   private
@@ -20,5 +21,9 @@ class Reservation < ApplicationRecord
   def set_room_id
     h = self.hotel
     self.room_id = h.available_room(self.start_date, self.final_date) if h
+  end
+
+  def available_room_in_hotel
+    errors.add(:hotel, "the hotel with id #{self.hotel_id} has no available rooms for the given date range") unless self.room_id
   end
 end

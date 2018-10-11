@@ -1,6 +1,11 @@
 class HotelsController < ApplicationController
-  before_action :set_api_key_user
+  before_action :set_api_key_user, except: [:index]
   before_action :set_hotel, only: [:update, :destroy]
+
+  def index
+    hotels = Hotel.where(index_params)
+    render json: hotels, status: :ok
+  end
 
   def create
     hotel = Hotel.new(hotel_params)
@@ -52,6 +57,15 @@ class HotelsController < ApplicationController
       :phone,
       :website,
       :email
+    )
+  end
+
+  def index_params
+    params.permit(
+      :name,
+      :state,
+      :hotel_type,
+      :size
     )
   end
 end

@@ -36,6 +36,7 @@ class HotelsController < ApplicationController
       :state,
       :fax,
       :hotel_type,
+      :number_of_rooms,
       :size,
       :phone,
       :website,
@@ -46,6 +47,7 @@ class HotelsController < ApplicationController
   def update_params
     params.permit(
       :hotel_type,
+      :number_of_rooms,
       :size,
       :phone,
       :website,

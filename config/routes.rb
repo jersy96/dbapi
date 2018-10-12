@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   namespace :hotels do
     get 'availability_in_date_range', to: 'availability#index'
+    get 'located_in_range', to: 'location#index'
   end
 end

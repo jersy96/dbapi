@@ -9,6 +9,7 @@ class Hotel < ApplicationRecord
 
   # Callbacks
   before_save :set_size
+  before_save :set_coordinates
 
   # Methods
   def available_room(start_date, final_date)
@@ -32,5 +33,18 @@ class Hotel < ApplicationRecord
     elsif self.number_of_rooms > 100
       self.size = 'large'
     end
+  end
+
+  def set_coordinates
+    if self.address_changed?
+      res = JSON.parse(HTTParty.get("http://dev.virtualearth.net/REST/v1/Locations?q=#{self.address}&key=Akjjm0BrUxXcTlXLiB31YA1W2DPQqgVyFU7d4X5qFY_y9YgC27g7W9YUHsRjfwuE").body)
+      if res['statusCode'] == 200 
+        coordinates = res['resourceSets'].first['resources'].first['point']['coordinates']
+        self.latitude = coordinates[0].to_s
+        self.longitude = coordinates[1].to_s
+      else
+        Rails.logger.info('EL API KEY DE GOOGLE YA NO FUNCIONA') 
+      end 
+    end 
   end
 end

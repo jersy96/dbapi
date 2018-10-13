@@ -13,9 +13,9 @@ class UsersController < ApplicationController
   def update
     @user.attributes = user_params
     if @user.save
-      render json: @user, status: :ok
+      render json: {successful: 1, user: UserSerializer.new(@user).as_json[:user]}, status: :ok
     else
-      render json: @user.errors.messages, status: :unprocessable_entity
+      render json: {successful: 0, errors: @user.errors.messages}, status: :unprocessable_entity
     end
   end
 

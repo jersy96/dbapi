@@ -38,12 +38,17 @@ class Hotel < ApplicationRecord
   def set_coordinates
     if self.address_changed?
       res = JSON.parse(HTTParty.get("http://dev.virtualearth.net/REST/v1/Locations?q=#{self.address}&key=Akjjm0BrUxXcTlXLiB31YA1W2DPQqgVyFU7d4X5qFY_y9YgC27g7W9YUHsRjfwuE").body)
-      if res['statusCode'] == 200 
-        coordinates = res['resourceSets'].first['resources'].first['point']['coordinates']
+      resources = res['resourceSets'].first['resources']
+      if res['statusCode'] == 200 and resources.any?
+        coordinates = resources.first['point']['coordinates']
         self.latitude = coordinates[0].to_s
         self.longitude = coordinates[1].to_s
       else
-        Rails.logger.info('EL API KEY DE GOOGLE YA NO FUNCIONA') 
+        s = "NO SE ENCONTRARON LAS COORDENADAS PARA EL HOTEL #{self.name} con email #{self.email}"
+        10.times do 
+          Rails.logger.info(s) 
+          puts s
+        end
       end 
     end 
   end

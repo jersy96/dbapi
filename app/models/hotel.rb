@@ -10,6 +10,7 @@ class Hotel < ApplicationRecord
   # Callbacks
   before_save :set_size
   before_save :set_coordinates
+  after_save :create_rooms
 
   # Methods
   def available_room(start_date, final_date)
@@ -51,5 +52,13 @@ class Hotel < ApplicationRecord
         end
       end 
     end 
+  end
+
+  def create_rooms
+    if self.number_of_rooms
+      self.number_of_rooms.times do
+        Room.create(hotel_id: self.id)
+      end
+    end
   end
 end

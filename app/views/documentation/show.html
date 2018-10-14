@@ -4,7 +4,137 @@
     <title>Page Title</title>
   </head>
   <body>
-    <h1>This is a LOCOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO Heading</h1>
-    <p>This is a paragraph.</p>
+    <h1 id="apikey">ApiKey</h1>
+
+      <ul>
+      <li>POST /api_keys</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      {
+          "email":"test@test.com"
+      }
+      </code></pre>
+
+      <hr />
+
+      <h1 id="documentation">Documentation</h1>
+
+      <ul>
+      <li>GET /documentation</li>
+      </ul>
+
+      <hr />
+
+      <h1 id="hotels">Hotels</h1>
+
+      <ul>
+      <li>GET /hotels</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      /hotels?size=large&amp;state=DELHI
+      </code></pre>
+
+      <ul>
+      <li>GET /hotels/availability_in_date_range</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      /hotels/availability_in_date_range?start_date=2018-10-15&amp;final_date=2018-10-20&amp;state=DELHI
+      </code></pre>
+
+      <ul>
+      <li>GET /hotels/located_in_range</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      /hotels/located_in_range?range=100&amp;latitude=46.41&amp;longitude=9.67
+      </code></pre>
+
+      <ul>
+      <li>POST /hotels</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      {
+          "api_key":"Tv9uxawXoDc2F6n2c2zBtzno",
+          "name":"hotel1",
+          "address":"address1",
+          "state":"state1",
+          "fax":"fax1",
+          "phone":"32423423",
+          "email":"dsdasd@test.com",
+          "website":"hotel.com",
+          "number_of_rooms":70,
+          "hotel_type":"type1"
+      }
+      </code></pre>
+
+      <ul>
+      <li>PUT /hotels/<strong>:hotel_id</strong></li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      {
+          "api_key":"Tv9uxawXoDc2F6n2c2zBtzno",
+          "phone":"32423423",
+          "email":"dsdasd@test.com",
+          "website":"hotel.com",
+          "number_of_rooms":80,
+          "hotel_type":"type2"
+      }
+      </code></pre>
+
+      <ul>
+      <li>DELETE /hotels/<strong>:hotel_id</strong></li>
+      </ul>
+
+      <hr />
+
+      <h1 id="reservations">Reservations</h1>
+
+      <ul>
+      <li>POST /reservations</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      {
+          "hotel_id":700,
+          "user_id":1,
+          "start_date":"2018-10-11",
+          "final_date":"2018-10-15"
+      }
+      </code></pre>
+
+      <hr />
+
+      <h1 id="user">User</h1>
+
+      <ul>
+      <li>POST /users</li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      {
+          "email":"test@test.com",
+          "password":"123456f",
+          "name":"juan",
+          "lastname":"perez"
+      }
+      </code></pre>
+
+      <ul>
+      <li>PUT /users/<strong>:user_id</strong></li>
+      </ul>
+
+      <pre><code>ejemplo de posibles parametros esperados:
+      {
+          "email":"test@test.com",
+          "password":"123456f",
+          "name":"juan",
+          "lastname":"perez"
+      }
+      </code></pre>
   </body>
 </html>
